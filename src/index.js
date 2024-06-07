@@ -70,3 +70,22 @@ console.log("Remaining users", userRemains);
 // Search for a user either by name or id
 console.log("User searched by name", library.searchUser("John Doe"));
 console.log("User searched by ID", library.searchUser("1"));
+
+// Borrow a book
+library.borrowBook("2", "ISBN-0987654321");
+library.borrowBook("1", "ISBN-1357902468");
+
+// Retrieve all the users after borrowing books to some
+const allUsersAfterBookBorrow = library.users;
+console.log("All users after book borrow", allUsersAfterBookBorrow);
+
+// Return a book
+library.returnBook("2", "ISBN-0987654321");
+library.returnBook("1", "ISBN-1357902468");
+
+// Retrieve all the users after borrowing books to some
+const allUsersAfterBookReturn = library.users;
+console.log("All users after book return", allUsersAfterBookReturn);
+
+// Check if a book is available
+console.log("Is book available?", library.searchBook("ISBN-1357902468"));

@@ -43,6 +43,37 @@ class Library {
       (user) => user.name.includes(query) || user.id.includes(query)
     );
   }
+
+  // Borrow a book for a user
+  borrowBook(userId, isbn) {
+    const user = this.users.find((user) => user.id === userId);
+    const book = this.books.find((book) => book.isbn === isbn);
+
+    if (user && book && book.isAvailable) {
+      user.borrowedBooks.push(book);
+      book.isAvailable = false;
+      return true;
+    }
+
+    return false;
+  }
+
+  //Return a book for a user
+  returnBook(userId, isbn) {
+    const user = this.users.find((user) => user.id === userId);
+    const book = this.books.find((book) => book.isbn === isbn);
+
+    if (user && book) {
+      book.isAvailable = true;
+      user.borrowedBooks = user.borrowedBooks.filter((b) => b.isbn !== isbn);
+    }
+  }
+
+  // Check if a book is available
+  isBookAvailable(isbn) {
+    const book = this.books.find((book) => book.isbn === isbn);
+    return book ? book.isAvailable : false;
+  }
 }
 
 export default Library;
