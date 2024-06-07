@@ -26,6 +26,23 @@ class Library {
         book.isbn.includes(query)
     );
   }
+
+  // Add a user to the library
+  addUser(user) {
+    this.users.push(user);
+  }
+
+  // Remove a user from the library by ID
+  removeUser(id) {
+    this.users = this.users.filter((user) => user.id !== id);
+  }
+
+  // Search for a user by name or ID
+  searchUser(query) {
+    return this.users.filter(
+      (user) => user.name.includes(query) || user.id.includes(query)
+    );
+  }
 }
 
 export default Library;
